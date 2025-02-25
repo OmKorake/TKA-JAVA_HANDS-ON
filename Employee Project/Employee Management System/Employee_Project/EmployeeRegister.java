@@ -50,17 +50,23 @@ public class EmployeeRegister extends HttpServlet{
 			ps.setString(11, role);
 			ps.setString(12, typeofwork);
 			ps.setString(13, pass);
-			ps.executeUpdate();
+			int check = ps.executeUpdate();
 			
 			
-			
+			if(check > 0) {
 			PrintWriter out = resp.getWriter();
-			System.out.println("Data is inserted Successfully.....");
-//			out.print("<div style='background-color:#28a745; color:white; padding:15px; text-align:center; margin:50px auto; width:60%; border-radius:8px; font-size:22px; font-weight:bold; box-shadow: 4px 4px 24px rgba(1, 1, 1, 1.2); animation: fadeIn 1.5s ease-in-out;>  Data has been inserted successfully....</div>");
-//			out.print("<style>@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }</style>");
-			
+			out.println("<html><body>");
+			out.println("<div style='text-align:center; margin-top:20px; font-size:20px; font-weight:bold; color:green; padding:10px; border:2px solid green; display:inline-block; background-color:#DFF2BF;'>");
+			out.println("✔ Data is inserted Successfully!");
+			out.println("</div>");
+			out.println("</body></html>");
+		}
+			else {
+				PrintWriter out = resp.getWriter();
+				out.print("Fail  to register!please try again.....!!");
+			}
 			resp.setContentType("text/html");
-			RequestDispatcher rd = req.getRequestDispatcher("/login.html");
+			RequestDispatcher rd = req.getRequestDispatcher("/emphome.html");
 			rd.include(req,resp);
 			
 			c.close();
