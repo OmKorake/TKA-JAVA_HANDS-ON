@@ -131,6 +131,24 @@
         transform: scale(1.05);
     }
 
+    .home-btn {
+        margin-top: 15px;
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        background: #ff4757;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .home-btn:hover {
+        background: #e84118;
+        transform: scale(1.05);
+    }
+
     .register-link {
         margin-top: 15px;
         font-size: 14px;
@@ -173,6 +191,7 @@
             </div>
             <button type="submit" class="login-btn">Login</button>
         </form>
-	</div>
+        <button class="home-btn" onclick="window.location.href='emphome.html'">Back to Home Page</button>
+    </div>
 </body>
 </html>

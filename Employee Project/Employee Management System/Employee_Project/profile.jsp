@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Employee Profile</title>
 </head>
 <body>
 <style>
@@ -52,11 +52,29 @@
     .profile-details h3:hover {
         color: #d4145a;
     }
+    .button-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    .button-container button {
+        background: #d4145a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        font-size: 16px;
+    }
+    .button-container button:hover {
+        background: #a10e47;
+    }
 </style>
 
 <div class="profile-container">
     <h1>Employee Profile</h1>
-
     <div class="profile-details">
         <h3>First Name: ${fname}</h3>
         <h3>Last Name: ${lname}</h3>
@@ -67,9 +85,14 @@
         <h3>City: ${city}</h3>
         <h3>State: ${state}</h3>
         <h3>Salary: ${sal}</h3>
-        <h3>Join Date: ${joindate}</h3>
+        <h3>Join Date: ${joindate}</h3> 
         <h3>Role: ${role}</h3>
         <h3>Type of Work: ${typeofwork}</h3>
+    </div>
+    
+    <div class="button-container">
+        <button onclick="window.location.href='emphome.html'">Back to Home Page</button>
+        <button onclick="window.location.href='loginemp.html'">Back to Login Page</button>
     </div>
 </div>
 

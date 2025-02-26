@@ -57,7 +57,7 @@ public class EmployeeRegister extends HttpServlet{
 			PrintWriter out = resp.getWriter();
 			out.println("<html><body>");
 			out.println("<div style='text-align:center; margin-top:20px; font-size:20px; font-weight:bold; color:green; padding:10px; border:2px solid green; display:inline-block; background-color:#DFF2BF;'>");
-			out.println("✔ Data is inserted Successfully!");
+			out.println("✔ Register Successfully!");
 			out.println("</div>");
 			out.println("</body></html>");
 		}
