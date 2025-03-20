@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="e" class="com.entities.Employee">
+		<property name="id" value="1"></property>
+		<property name="name" value="Prajwal"></property>
+		<property name="age" value="20"></property>
+		<property name="con" ref="c"></property>
+	</bean>
+	<bean id="c" class="com.entities.Country">
+		<property name="cid" value="91"></property>
+		<property name="cname" value="India"></property>
+	</bean>
+
+	<bean id="cr" class="com.entities.Car">
+		<property name="cid" value="1011"></property>
+		<property name="model" value="Punch"></property>
+		<property name="company" value="TATA"></property>
+		<property name="price" value="1500000"></property>
+		<property name="shorm" ref="sh"></property>
+	</bean>
+	<bean id="sh" class="com.entities.Showroom">
+		<property name="sid" value="40043"></property>
+		<property name="sname" value="OSAM Motors"></property>
+		<property name="city" value="Solapur "></property>
+	</bean>
+
+
+
+</beans>
