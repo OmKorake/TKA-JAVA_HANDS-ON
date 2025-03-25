@@ -11,12 +11,12 @@ public class PayAspect {
 	
 	@Before("execution(public void myPayment())")
 	public void beforePay() {
-		System.out.println("before payment");
+		System.out.println("Panding Transaction.....");
 	}
 	
 	@After("execution(public void myPayment())")
 	public void afterPay() {
-		System.out.println("after payment");
+		System.out.println("500$ ammount is debited....");
 	}
 	
 
