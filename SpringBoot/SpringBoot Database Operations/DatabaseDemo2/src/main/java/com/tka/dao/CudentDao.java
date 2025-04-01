@@ -1,12 +1,19 @@
 package com.tka.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tka.entity.Cudent;
+
+import jakarta.persistence.criteria.Root;
 
 @Repository
 public class CudentDao {
@@ -36,8 +43,8 @@ public class CudentDao {
 		return "Data is deleted....";
 
 	}
-	
-	public String updataData(Cudent c,int id) {
+
+	public String updataData(Cudent c, int id) {
 		Session ss = sf.openSession();
 		Transaction tr = ss.beginTransaction();
 		Cudent c1 = ss.get(Cudent.class, id);
@@ -48,11 +55,29 @@ public class CudentDao {
 		ss.close();
 		return "Data is updated......";
 	}
-	
-	public void getAlldata() {
+
+	public Cudent getSingleRecord(int id) {
 		Session ss = sf.openSession();
 		Transaction tr = ss.beginTransaction();
-		
+		Cudent c = ss.get(Cudent.class, id);
+		tr.commit();
+		ss.close();
+		return c;
+	}
+
+	public List<Object> getAllRecord(Cudent c) {
+		Session ss = sf.openSession();
+		Transaction tr = ss.beginTransaction();
+
+		HibernateCriteriaBuilder hcb = ss.getCriteriaBuilder();
+		JpaCriteriaQuery<Object> jcq = hcb.createQuery();
+		Root<Cudent> root = jcq.from(Cudent.class);
+		jcq.select(root);
+		Query<Object> query = ss.createQuery(jcq);
+		List<Object> list = query.getResultList();
+		tr.commit();
+		ss.close();
+		return list;
 	}
 
 }
