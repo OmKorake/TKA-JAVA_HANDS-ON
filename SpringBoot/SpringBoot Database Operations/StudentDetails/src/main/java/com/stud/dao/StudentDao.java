@@ -1,12 +1,20 @@
 package com.stud.dao;
 
+import java.util.List;
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.stud.entity.Student;
+
+import jakarta.persistence.criteria.Root;
 
 @Repository
 public class StudentDao {
@@ -53,5 +61,34 @@ public class StudentDao {
 		ss.close();
 		return "Data is updated.....";
 		
+	}
+	
+	public Student getSingleRecord(int id) {
+		Session ss = sf.openSession();
+		Transaction tr = ss.beginTransaction();
+		Student e = ss.get(Student.class, id);
+
+		tr.commit();
+		ss.close();
+
+		return e;
+	}
+
+	public List<Object> getAllRecord(Student s) {
+		Session ss = sf.openSession();
+		Transaction tr = ss.beginTransaction();
+
+		HibernateCriteriaBuilder hcb = ss.getCriteriaBuilder();
+		JpaCriteriaQuery<Object> jcq = hcb.createQuery();
+		Root<Student> root = jcq.from(Student.class);
+
+		jcq.select(root);
+
+		Query<Object> query = ss.createQuery(jcq);
+		List<Object> list = query.getResultList();
+		tr.commit();
+		ss.close();
+
+		return list;
 	}
 }

@@ -1,7 +1,10 @@
 package com.jbk.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,6 +49,18 @@ public class LibraryController {
 		String str = service.updateData(l, id);
 		return str;
 
+	}
+
+	@GetMapping("/getsingledata")
+	public Library getSingleRecord(@RequestParam int id) {
+		Library l = service.getSingleRecord(id);
+		return l;
+	}
+
+	@GetMapping("/getalldata")
+	public List<Object> getAllRecord(Library l) {
+		List<Object> list = service.getAllRecord(l);
+		return list;
 	}
 
 }

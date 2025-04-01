@@ -1,7 +1,11 @@
 package com.jbk.controller;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +39,18 @@ public class VehicleController {
 	public String updataData(@RequestBody Vehicle v, @RequestParam int id) {
 		String str = service.updateData(v, id);
 		return str;
+	}
+	
+	@GetMapping("/getsingledata")
+	public Vehicle getSingleRecord(@RequestParam int id) {
+		Vehicle v = service.getSingleRecord(id);
+		return v;
+	}
+	
+	@GetMapping("/getalldata")
+	public List<Object> getAllRecord(Vehicle v) {
+		List<Object> list = service.getAllRecord(v);
+		return list;
 	}
 
 }

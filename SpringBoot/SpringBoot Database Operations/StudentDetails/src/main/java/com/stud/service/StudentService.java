@@ -1,5 +1,8 @@
 package com.stud.service;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,15 @@ public class StudentService {
 		String str = sdao.updateData(s, id);
 		return str;
 
+	}
+	public Student getSingleRecord(int id) {
+		Student s = sdao.getSingleRecord(id);
+		return s;
+	}
+	
+	public List<Object> getAllRecord(Student s) {
+		List<Object> list = sdao.getAllRecord(s);
+		return list;
 	}
 
 }

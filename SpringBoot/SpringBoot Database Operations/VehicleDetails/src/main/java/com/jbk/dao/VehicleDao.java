@@ -1,12 +1,20 @@
 package com.jbk.dao;
 
+import java.util.List;
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jbk.entity.Vehicle;
+
+import jakarta.persistence.criteria.Root;
 
 @Repository
 public class VehicleDao {
@@ -53,21 +61,34 @@ public class VehicleDao {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public List<Student> getAllData() {
-//        Session ss = factory.openSession();
-//        List<Student> students = ss.createQuery("from Student", Student.class).list();
-//        ss.close();
-//        return students;
-//    }
+	public Vehicle getSingleRecord(int id) {
+		Session ss = sf.openSession();
+		Transaction tr = ss.beginTransaction();
+		Vehicle v = ss.get(Vehicle.class, id);
+
+		tr.commit();
+		ss.close();
+
+		return v;
+	}
+
+	public List<Object> getAllRecord(Vehicle v) {
+		Session ss = sf.openSession();
+		Transaction tr = ss.beginTransaction();
+
+		HibernateCriteriaBuilder hcb = ss.getCriteriaBuilder();
+		JpaCriteriaQuery<Object> jcq = hcb.createQuery();
+		Root<Vehicle> root = jcq.from(Vehicle.class);
+
+		jcq.select(root);
+
+		Query<Object> query = ss.createQuery(jcq);
+		List<Object> list = query.getResultList();
+		tr.commit();
+		ss.close();
+
+		return list;
+	}
 	
 
 }

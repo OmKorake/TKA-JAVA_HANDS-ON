@@ -1,7 +1,10 @@
 package com.stud.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,6 +48,18 @@ public class studentController {
 		String str = service.updateData(s, id);
 		return str;
 
+	}
+
+	@GetMapping("/getsingledata")
+	public Student getSingleRecord(@RequestParam int id) {
+		Student s = service.getSingleRecord(id);
+		return s;
+	}
+
+	@GetMapping("/getalldata")
+	public List<Object> getAllRecord(Student s) {
+		List<Object> list = service.getAllRecord(s);
+		return list;
 	}
 
 }
